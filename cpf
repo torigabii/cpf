@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .cpfDiv{
+        border: 5px;
+        background-color: rgb(255, 218, 241);
+        border-width: 5px;
+        border-color: rgb(102, 25, 72);
+        text-align: center;
+    }
+    h1{
+        color: rgb(150, 0, 112);
+        font-family: 'Times New Roman', Times, serif;
+    }
+    </style>
+<body>
+    <script>
+       function _cpf(cpf) {
+    cpf = cpf.replace(/[^\d]+/g, '');
+    if (cpf == '') return false;
+    if (cpf.length != 11 ||
+        cpf == "00000000000" ||
+        cpf == "11111111111" ||
+        cpf == "22222222222" ||
+        cpf == "33333333333" ||
+        cpf == "44444444444" ||
+        cpf == "55555555555" ||
+        cpf == "66666666666" ||
+        cpf == "77777777777" ||
+        cpf == "88888888888" ||
+        cpf == "99999999999")
+        return false;
+    add = 0;
+    for (i = 0; i < 9; i++)
+        add += parseInt(cpf.charAt(i)) * (10 - i);
+    rev = 11 - (add % 11);
+    if (rev == 10 || rev == 11)
+        rev = 0;
+    if (rev != parseInt(cpf.charAt(9)))
+        return false;
+    add = 0;
+    for (i = 0; i < 10; i++)
+        add += parseInt(cpf.charAt(i)) * (11 - i);
+    rev = 11 - (add % 11);
+    if (rev == 10 || rev == 11)
+        rev = 0;
+    if (rev != parseInt(cpf.charAt(10)))
+        return false;
+    return true;
+}
+function validarCPF(el){
+  if( !_cpf(el.value) ){
+
+    alert("CPF inválido! " + " " + el.value);
+
+    el.value = "";
+  }
+  else{
+      alert ("Cpf Válido! " + " " + el.value)
+  }
+}
+    
+        </script>
+        <div class= "cpfDiv">
+            <h1> Valida CPF - Gabrielle e Nicolly 2B
+            </h1>
+            <h2> Coloque seu cpf para que o programa veja se ele é valido ou não: </h2>
+        <input name="campo_de_teste" type="text" onblur="validarCPF(this)">
+        <button>Enviar</button> <br>
+        <p1>lembre-se que o cpf é um número de 11 digitos!</p1>
+    </div>
+    
+</body>
+</html>
